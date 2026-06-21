@@ -97,10 +97,29 @@ from src.logger import logging
 warnings.simplefilter("ignore", UserWarning)
 warnings.filterwarnings("ignore")
 
-# --- MLflow / DagsHub Configuration ---
-mlflow.set_tracking_uri('https://dagshub.com/premmotetech1/MLOPS_CAPSTONE.mlflow')
-dagshub.init(repo_owner='premmotetech1', repo_name='MLOPS_CAPSTONE', mlflow=True)
+# # --- MLflow / DagsHub Configuration ---
+# mlflow.set_tracking_uri('https://dagshub.com/premmotetech1/MLOPS_CAPSTONE.mlflow')
+# dagshub.init(repo_owner='premmotetech1', repo_name='MLOPS_CAPSTONE', mlflow=True)
+import os
+import mlflow
 
+# Set up DagsHub credentials for MLflow tracking
+dagshub_token = os.getenv("CAPSTONE_TEST")
+
+if not dagshub_token:
+    raise EnvironmentError("CAPSTONE_TEST environment variable is not set")
+
+os.environ["MLFLOW_TRACKING_USERNAME"] = "premmotetech1"
+os.environ["MLFLOW_TRACKING_PASSWORD"] = dagshub_token
+
+dagshub_url = "https://dagshub.com/premmotetech1/MLOPS_CAPSTONE.mlflow"
+repo_owner = "premmotetech1"
+repo_name = "MLOPS_CAPSTONE"
+
+# Set up MLflow tracking URI
+mlflow.set_tracking_uri(
+    f"{dagshub_url}/{repo_owner}/{repo_name}.mlflow"
+)
 
 def load_model_info(file_path: str) -> dict:
     """Load the model run info using a Windows normalized path string."""
