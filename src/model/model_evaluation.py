@@ -169,16 +169,25 @@ os.environ["MLFLOW_HTTP_REQUEST_TIMEOUT"] = "300"
 import os
 import mlflow
 
-# Set up DagsHub credentials for MLflow tracking
+from dotenv import load_dotenv
+import os
+
+load_dotenv()  # Loads .env locally
+
 dagshub_token = os.getenv("CAPSTONE_TEST")
 
 if not dagshub_token:
     raise EnvironmentError("CAPSTONE_TEST environment variable is not set")
+# Set up DagsHub credentials for MLflow tracking
+# dagshub_token = os.getenv("CAPSTONE_TEST")
 
-os.environ["MLFLOW_TRACKING_USERNAME"] = dagshub_token
+# if not dagshub_token:
+#     raise EnvironmentError("CAPSTONE_TEST environment variable is not set")
+
+os.environ["MLFLOW_TRACKING_USERNAME"] = "premmotetech1"
 os.environ["MLFLOW_TRACKING_PASSWORD"] = dagshub_token
 
-dagshub_url = "https://dagshub.com/premmotetech1/MLOPS_CAPSTONE.mlflow"
+dagshub_url = "https://dagshub.com"
 repo_owner = "premmotetech1"
 repo_name = "MLOPS_CAPSTONE"
 
