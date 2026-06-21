@@ -8,6 +8,7 @@ pandas==2.2.3
 prometheus_client
 
 dvc[s3]==2.35.0
+python-dotenv
 
 
 #this is we give this to the docker file to install the dependencies for our flask app
