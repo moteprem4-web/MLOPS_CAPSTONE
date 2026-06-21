@@ -167,7 +167,9 @@ os.environ["MLFLOW_HTTP_REQUEST_TIMEOUT"] = "300"
 # dagshub.init(repo_owner='premmotetech1', repo_name='MLOPS_CAPSTONE', mlflow=True)
 
 import os
-import mlflowS
+import mlflow
+from dotenv import load_dotenv
+load_dotenv()
 
 # Set up DagsHub credentials for MLflow tracking
 dagshub_token = os.getenv("CAPSTONE_TEST")
