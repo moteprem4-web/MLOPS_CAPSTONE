@@ -220,7 +220,7 @@ def evaluate_model(clf, X_test: np.ndarray, y_test: np.ndarray) -> dict:
 def main():
     mlflow.set_experiment("my-dvc-pipeline")
     
-    model_info_path = r"C:\Users\motep\Desktop\MLOPS\MLOPS_CAPSTONE\reports\experiment_info.json"
+    model_info_path = "./reports/experiment_info.json"
     reports_dir = os.path.dirname(model_info_path)
     metrics_path = os.path.join(reports_dir, "metrics.json")
     

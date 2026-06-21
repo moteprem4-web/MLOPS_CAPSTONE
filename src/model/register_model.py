@@ -197,11 +197,19 @@ def register_model(model_name: str, model_info: dict):
 
 def main():
     try:
-        model_info_path = r"C:\Users\motep\Desktop\MLOPS\MLOPS_CAPSTONE\reports\experiment_info.json"
-        model_info = load_model_info(model_info_path)
+        # model_info_path = r"C:\Users\motep\Desktop\MLOPS\MLOPS_CAPSTONE\reports\experiment_info.json"
+        # model_info = load_model_info(model_info_path)
         
+        # model_name = "my_model"
+        # register_model(model_name, model_info)
+        # print("\n🎉 Success! Model registration stage executed successfully without errors!")
+        model_info_path = os.path.join("reports", "experiment_info.json")
+
+        model_info = load_model_info(model_info_path)
+
         model_name = "my_model"
         register_model(model_name, model_info)
+
         print("\n🎉 Success! Model registration stage executed successfully without errors!")
         
     except Exception as e:
