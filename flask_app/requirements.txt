@@ -6,5 +6,6 @@ nltk==3.9.1
 numpy==2.2.1
 pandas==2.2.3
 prometheus_client
+dvc
 
 #this is we give this to the docker file to install the dependencies for our flask app
