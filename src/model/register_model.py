@@ -104,6 +104,15 @@ import os
 import mlflow
 
 # Set up DagsHub credentials for MLflow tracking
+# dagshub_token = os.getenv("CAPSTONE_TEST")
+
+# if not dagshub_token:
+#     raise EnvironmentError("CAPSTONE_TEST environment variable is not set")
+from dotenv import load_dotenv
+import os
+
+load_dotenv()  # Loads .env locally
+
 dagshub_token = os.getenv("CAPSTONE_TEST")
 
 if not dagshub_token:
