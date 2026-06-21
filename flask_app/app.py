@@ -180,6 +180,7 @@ from prometheus_client import Counter, Histogram, generate_latest, CollectorRegi
 import time
 from nltk.stem import WordNetLemmatizer
 from nltk.corpus import stopwords
+from flask_app.metrics import metrics
 import string
 import re
 import dagshub
@@ -239,12 +240,41 @@ def normalize_text(text):
     text = lemmatization(text)
     return text
 
-# Below code block is for local use
-# -------------------------------------------------------------------------------------
-mlflow.set_tracking_uri('https://dagshub.com/premmotetech1/MLOPS_CAPSTONE.mlflow')
-dagshub.init(repo_owner='premmotetech1', repo_name='MLOPS_CAPSTONE', mlflow=True)
-# -------------------------------------------------------------------------------------
+# # Below code block is for local use
+# # -------------------------------------------------------------------------------------
+# mlflow.set_tracking_uri('https://dagshub.com/premmotetech1/MLOPS_CAPSTONE.mlflow')
+# dagshub.init(repo_owner='premmotetech1', repo_name='MLOPS_CAPSTONE', mlflow=True)
+# # -------------------------------------------------------------------------------------
 
+import os
+import mlflow
+
+from dotenv import load_dotenv
+import os
+
+load_dotenv()  # Loads .env locally
+
+dagshub_token = os.getenv("CAPSTONE_TEST")
+
+if not dagshub_token:
+    raise EnvironmentError("CAPSTONE_TEST environment variable is not set")
+# Set up DagsHub credentials for MLflow tracking
+# dagshub_token = os.getenv("CAPSTONE_TEST")
+
+# if not dagshub_token:
+#     raise EnvironmentError("CAPSTONE_TEST environment variable is not set")
+
+os.environ["MLFLOW_TRACKING_USERNAME"] = "premmotetech1"
+os.environ["MLFLOW_TRACKING_PASSWORD"] = dagshub_token
+
+dagshub_url = "https://dagshub.com"
+repo_owner = "premmotetech1"
+repo_name = "MLOPS_CAPSTONE"
+
+# Set up MLflow tracking URI
+mlflow.set_tracking_uri(
+    f"{dagshub_url}/{repo_owner}/{repo_name}.mlflow"
+)
 # Initialize Flask app
 app = Flask(__name__)
 
