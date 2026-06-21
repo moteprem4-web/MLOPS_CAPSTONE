@@ -180,7 +180,7 @@ from prometheus_client import Counter, Histogram, generate_latest, CollectorRegi
 import time
 from nltk.stem import WordNetLemmatizer
 from nltk.corpus import stopwords
-from flask_app.metrics import metrics
+
 import string
 import re
 import dagshub
