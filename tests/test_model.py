@@ -33,7 +33,9 @@ class TestModelLoading(unittest.TestCase):
         cls.new_model = mlflow.pyfunc.load_model(cls.new_model_uri)
 
         # Load the vectorizer
-        cls.vectorizer = pickle.load(open('models/vectorizer.pkl', 'rb'))
+        # cls.vectorizer = pickle.load(open('models/vectorizer.pkl', 'rb'))
+        with open('models/vectorizer.pkl', 'rb') as f:
+            cls.vectorizer = pickle.load(f)
 
         # Load holdout test data
         cls.holdout_data = pd.read_csv('data/processed/test_bow.csv')
@@ -51,7 +53,9 @@ class TestModelLoading(unittest.TestCase):
         # Create a dummy input for the model based on expected input shape
         input_text = "hi how are you"
         input_data = self.vectorizer.transform([input_text])
-        input_df = pd.DataFrame(input_data.toarray(), columns=[str(i) for i in range(input_data.shape[1])])
+        input_df = pd.DataFrame(
+            input_data.toarray(),
+            columns=[str(i) for i in range(input_data.shape[1])]).astype("float64")
 
         # Predict using the new model to verify the input and output shapes
         prediction = self.new_model.predict(input_df)
@@ -65,7 +69,7 @@ class TestModelLoading(unittest.TestCase):
 
     def test_model_performance(self):
         # Extract features and labels from holdout test data
-        X_holdout = self.holdout_data.iloc[:,0:-1]
+        X_holdout = self.holdout_data.iloc[:,0:-1].astype("float64")
         y_holdout = self.holdout_data.iloc[:,-1]
 
         # Predict using the new model
