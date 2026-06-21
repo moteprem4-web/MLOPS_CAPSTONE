@@ -2,6 +2,10 @@
 
 import os
 import mlflow
+from dotenv import load_dotenv
+import os
+
+load_dotenv()
 
 def promote_model():
     # Set up DagsHub credentials for MLflow tracking
@@ -33,7 +37,6 @@ def promote_model():
         raise Exception(
             f"No model version found in Staging for '{model_name}'"
     )
-
     latest_version_staging = staging_versions[0].version
 
     # Archive the current production model
