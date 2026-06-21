@@ -146,6 +146,7 @@
 
 # if __name__ == '__main__':
 #     main()
+from flask_app.app import metrics
 import numpy as np
 import pandas as pd
 import pickle
@@ -234,10 +235,31 @@ def main():
             y_test = test_data.iloc[:, -1].values
 
             metrics = evaluate_model(clf, X_test, y_test)
-            
+
+            # Create reports directory safely
+            reports_dir = "reports"
             os.makedirs(reports_dir, exist_ok=True)
-            with open(metrics_path, 'w') as f:
+
+# Define file paths
+            metrics_path = os.path.join(reports_dir, "metrics.json")
+            model_info_path = os.path.join(reports_dir, "experiment_info.json")
+
+            print("model_info_path =", model_info_path)
+            print("reports_dir =", reports_dir)
+
+# Save metrics
+            with open(metrics_path, "w") as f:
                 json.dump(metrics, f, indent=4)
+
+# Log metrics to MLflow
+            mlflow.log_metrics(metrics)
+
+            if hasattr(clf, "get_params"):
+                 mlflow.log_params(
+                    {k: str(v) for k, v in clf.get_params().items()}
+    )
+
+            mlflow.log_artifact(metrics_path)
             
             mlflow.log_metrics(metrics)
             if hasattr(clf, 'get_params'):
