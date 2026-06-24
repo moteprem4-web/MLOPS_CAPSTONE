@@ -67,7 +67,7 @@
     - optional: try to delete image locally and pull it from dockerhub and run (optional)
 
 37. Setup aws services for below secrets and variables:
-	AWS_ACCESS_KEY_ID=AKIAQBDDQ6ZO36Q75IIF
+	AWS_ACCESS_KEY_ID=
 	AWS_SECRET_ACCESS_KEY
 	AWS_REGION
 	ECR_REPOSITORY (capstone-proj)
@@ -78,13 +78,13 @@
 
 
 ----------------------------------------------------------------------------------
-*********Setup required before moving to EKS deployment*********
+*********Setup required before moving to EKS deployment*ve********
 ----------------------------------------------------------------------------------
 * Run the following in PowerShell to see the AWS CLI path being used: Get-Command aws
 If the path points to your Anaconda environment (e.g., C:\Users\Personal\anaconda3\...), it’s a conflicting installation.
 
 * Uninstall Python-Based AWS CLI(Remove the conflicting AWS CLI from your Python environment): pip uninstall awscli
-* Verify it's uninstalled: aws --version
+* Verify it's uninstalled: 
 * Update Environment Variables:
 > Make sure the .msi AWS CLI path is in your system PATH (usually installed at C:\Program Files\Amazon\AWSCLIV2\aws.exe).
 > Add it to your PATH if missing: Open Control Panel > System > Advanced System Settings > Environment Variables. Under "System Variables," find Path, and add the AWS CLI path: C:\Program Files\Amazon\AWSCLIV2\
@@ -114,16 +114,15 @@ aws eks --region us-east-1 update-kubeconfig --name flask-app-cluster (This ensu
 
 41. Check EKS Cluster Configuration Ensure you can access your EKS cluster by running
     aws eks list-clusters
-
-42. Delete cluster(optional):
-    eksctl delete cluster --name flask-app-cluster --region us-east-1
+************************** 42. Delete cluster(optional):*****************************************needed**************88
+    eksctl delete cluster --name flask-app-cluster --region us-east-1   #need to delete the stop the
 
     Also, verify cluster deletion:
     eksctl get cluster --region us-east-1
 
 43. Verify the cluster status:
     aws eks --region us-east-1 describe-cluster --name flask-app-cluster --query "cluster.status"
-
+*************************************************************************************************************
 
 44. Check cluster connectivity:
 kubectl get nodes
