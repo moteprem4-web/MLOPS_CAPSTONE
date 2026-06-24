@@ -12,13 +12,13 @@ flavors:
     code: null
     pickled_model: model.pkl
     serialization_format: cloudpickle
-    sklearn_version: 1.7.2
-mlflow_version: 2.19.0
-model_size_bytes: 1115
-model_uuid: 974b9695124a485c9d7ffb1eef14891c
-run_id: c78ddca4d23943eb87d800cb8e7f2fdd
+    sklearn_version: 1.5.1
+mlflow_version: 2.15.0
+model_size_bytes: 1114
+model_uuid: 087313a7d2a44362a9f878ed16022b68
+run_id: 3acb3d8bbaf2448ab7f2d87796043083
 signature:
   inputs: '[{"type": "tensor", "tensor-spec": {"dtype": "float64", "shape": [-1, 50]}}]'
   outputs: '[{"type": "tensor", "tensor-spec": {"dtype": "int64", "shape": [-1]}}]'
   params: null
-utc_time_created: '2026-06-21 19:49:49.768567'
+utc_time_created: '2026-06-24 10:01:11.094968'

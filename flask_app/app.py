@@ -180,7 +180,7 @@ from prometheus_client import Counter, Histogram, generate_latest, CollectorRegi
 import time
 from nltk.stem import WordNetLemmatizer
 from nltk.corpus import stopwords
-
+# from flask_app.metrics import metrics
 import string
 import re
 import dagshub
@@ -240,7 +240,7 @@ def normalize_text(text):
     text = lemmatization(text)
     return text
 
-# # Below code block is for local use
+# Below code block is for local use
 # # -------------------------------------------------------------------------------------
 # mlflow.set_tracking_uri('https://dagshub.com/premmotetech1/MLOPS_CAPSTONE.mlflow')
 # dagshub.init(repo_owner='premmotetech1', repo_name='MLOPS_CAPSTONE', mlflow=True)

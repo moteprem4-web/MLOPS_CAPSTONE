@@ -91,4 +91,5 @@ cred.txt
 
 local_s3
 .env
+
 vectorizer.pkl
