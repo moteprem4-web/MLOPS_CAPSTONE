@@ -62,7 +62,7 @@
 35. go to root dir and: "docker build -t capstone-app:latest ."
 36. Try running the image: "docker run -p 8888:5000 capstone-app:latest"
     - This run will give 'OSError: capstone_test environment variable is not set'...obviously
-    - alternate: docker run -p 8888:5000 -e CAPSTONE_TEST=302b990eed9a7f6629e306fa030e8a080f13e25a capstone-app:latest
+    - alternate: docker run -p 8888:5000 -e CAPSTONE_TEST=302b********a030e8a080f13e25a capstone-app:latest
     - docker push youruser/capstone-app:latest (optional)
     - optional: try to delete image locally and pull it from dockerhub and run (optional)
 
@@ -143,9 +143,9 @@ kubectl get svc
 kubectl get svc flask-app-service
 
 49. Try externa-ip:5000 directly on url or on terminal : curl http://external-ip:5000
-curl http://a6bf6255d5f61470c9782b8955c98271-1409247973.us-east-1.elb.amazonaws.com:5000
+curl a82b6612b4b1d48b5b51559064451f38-108455594.us-east-1.elb.amazonaws.com:5000
 
-
+************* DONE ************************************************************************************************
 
 
 
@@ -178,7 +178,7 @@ global:
 scrape_configs:
   - job_name: "flask-app"
     static_configs:
-      - targets: ["a6bf6255d5f61470c9782b8955c98271-1409247973.us-east-1.elb.amazonaws.com:5000"]  # Replace with your app's External IP
+      - targets: ["a82b6612b4b1d48b5b51559064451f38-108455594.us-east-1.elb.amazonaws.com:5000"]  # Replace with your app's External IP
 
 
 
@@ -218,11 +218,11 @@ sudo apt update && sudo apt upgrade -y
 
 66. Open Grafana web UI: http://<ec2-public-ip>:3000 (username/pass - admin)
 
-67. Add Prometheus as a Data Source: http://54.81.71.206/:9090
+67. Add Prometheus as a Data Source: http://54.227.19.48/:9090
     click - Save and Test | Get started with building dashboards.
 
-
-
+http://54.227.19.48:9090/
+http://54.227.19.48/
 ----------------------------------------------------------------------------------
 
 AWS Resource Cleanup:
